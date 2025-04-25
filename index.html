@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Around" />
+    <meta name="author" content="FIDEL_MARINY" />
+    <meta name="keywords" content="html, css" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Tripleten_Around</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__logo">
+          <img
+            src="./Pictures/Vector.png"
+            alt="Logo Vector"
+            class="header__logo-vector"
+          />
+          <hr class="header__line" />
+        </div>
+        <div class="header__profile">
+          <img
+            src="./Pictures/image Jacques Cousteau.png"
+            alt=" Foto de Jacques
+          Cousteau"
+            class="header__profile_image-avatar"
+          />
+
+          <div class="header__profile-Info">
+            <div class="header__profile-Info_in">
+              <p class="header__profile_first-text">Jacques Cousteau</p>
+              <button type="button" class="header__profile_edit-button">
+                <img
+                  src="./Pictures/Vector_pencil.png"
+                  class="header__profile_edit-button_pencil"
+                />
+              </button>
+            </div>
+
+            <p class="header__profile_second-text">Explorador</p>
+          </div>
+
+          <img
+            src="./Pictures/Add Button.png"
+            alt="#"
+            class="header__profile_add-button"
+          />
+        </div>
+      </header>
+      <main class="content">
+        <section class="elements">
+          <!-- card 1 -->
+          <div class="element">
+            <img
+              src="./Pictures/1_kirill-pershin-1088404-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Valle de Yosemite
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+          <!-- card 2 -->
+          <div class="element">
+            <img
+              src="./Pictures/2_kirill-pershin-1404681-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Lago Louise
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+          <!-- card 3 -->
+          <div class="element">
+            <img
+              src="./Pictures/3_kirill-pershin-1556355-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Montañas Calvas
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+          <!-- card 4 -->
+          <div class="element">
+            <img
+              src="./Pictures/4_kirill-pershin-1404681-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Latemar
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+          <!-- card 5 -->
+          <div class="element">
+            <img
+              src="./Pictures/5_kirill-pershin-1556355-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Vanois National...
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+          <!-- card 6 -->
+          <div class="element">
+            <img
+              src="./Pictures/6_kirill-pershin-1088404-unsplash.png"
+              alt=""
+              class="element-grid__card-image"
+            />
+
+            <p class="element__card-text">
+              Lago di Braies
+              <span
+                ><img
+                  src="./Pictures/Heart_White.png"
+                  alt="#"
+                  class="element__card_group-vector"
+              /></span>
+            </p>
+          </div>
+        </section>
+        <section class="footer">
+          <div>
+            <p class="footer__copyright">© 2024 Around The U.S.</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Codigo para Cuadro EMERGENETE -->
+      <section class="popup">
+        <div class="popup__overlay"></div>
+        <div class="popup__content">
+          <button class="popup__close-button">
+            <img src="./Pictures/Close Icon.svg" alt="Boton de cerrado" />
+          </button>
+          <form class="popup__form">
+            <h2 class="popup__title">Editar Perfil</h2>
+            <input class="popup__imput" id="name" placeholder="Nombre" />
+            <input class="popup__imput" id="about" placeholder="Acerca de mí" />
+            <button type="submit" class="popup__save-button">GUARDAR</button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script src="./scrip/index.js"></script>
+  </body>
+</html>
+<!--  -->

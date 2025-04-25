@@ -1,0 +1,41 @@
+.element-grid__card-image {
+  max-width: 282px;
+  height: 282px;
+  box-sizing: border-box;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-sizing: border-box;
+}
+
+.elements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 200px 67px;
+  padding-bottom: 1px;
+  row-gap: 21px;
+  column-gap: 17px;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+}
+.element__card-text {
+  background-color: white;
+  width: 246px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  letter-spacing: 0%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 25px 15px 31px 21px;
+}
+
+.element__card_group-vector {
+  max-width: 21px;
+  height: 19px;
+}
