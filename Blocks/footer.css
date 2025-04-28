@@ -4,9 +4,22 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  letter-spacing: 0%;
   width: 318px;
   height: 18px;
-  margin: 0 767px 0 200px;
-  padding-bottom: 60px;
+  margin: 0;
+  padding: 0 767px 60px 200px;
+}
+
+/* STYLES MEDEIAS QUERIS for 320px*/
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    font-size: 14px;
+    max-width: 282px;
+    /* Al width se resta 19px de cada lado del padding (19px X2) */
+    width: calc(100% - 38px);
+    padding: 0 19px 36px;
+    height: 14px;
+    margin: 0;
+    /* align-items: start; */
+  }
 }
