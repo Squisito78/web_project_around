@@ -4,13 +4,13 @@
 
 //Aqui Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS ya tambien por su ID (#)
 //--->botones
-const editButton = document.querySelector(".header__profile_edit-button");
+const editButton = document.querySelector(".header__profile-edit-button");
 const closeButton = document.querySelector(".popup__close-button");
 
 //--->popup
 const popup = document.querySelector(".popup");
-const titleFistText = document.querySelector(".header__profile_first-text");
-const titleSecondText = document.querySelector(".header__profile_second-text");
+const titleFistText = document.querySelector(".header__profile-first-text");
+const titleSecondText = document.querySelector(".header__profile-second-text");
 
 //--->form
 const form = document.querySelector(".popup__form");

@@ -85,6 +85,39 @@
   box-shadow: 0px 0px 25px 0px #00000026;
 }
 
+/* STYLES MEDEIAS QUERIS for 768px*/
+@media screen and (max-width: 768px) {
+  .popup-open {
+    width: 330px;
+    height: 300px;
+    top: 200px;
+    left: 175px;
+  }
+
+  .popup__imput {
+    color: green;
+  }
+
+  .popup__title {
+    margin-bottom: 34px;
+  }
+  .popup__save-button {
+    color: green;
+    background-color: lightgreen;
+  }
+
+  .popup__save-button {
+    margin-bottom: 10px;
+  }
+
+  .popup__close-button {
+    width: 32px;
+    height: 32px;
+    top: -40px;
+    left: 425px;
+  }
+}
+
 /* STYLES MEDEIAS QUERIS for 320px*/
 @media screen and (max-width: 320px) {
   .popup {

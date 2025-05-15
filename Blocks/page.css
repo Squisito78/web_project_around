@@ -6,4 +6,5 @@
   color: white;
   position: relative;
   font-family: "Inter";
+  overflow: hidden;
 }

@@ -26,7 +26,7 @@
 
 .element__card-text {
   background-color: white;
-  width: 246px;
+  /* width: 246px; */
   color: black;
   font-family: "Inter";
   font-weight: 900;
@@ -42,6 +42,24 @@
 .element__card-group-vector {
   max-width: 21px;
   height: 19px;
+}
+
+/* STYLES MEDEIAS QUERIS for 768px*/
+@media screen and (max-width: 768px) {
+  .elements {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    max-width: 768px;
+    /* al Width se resta 19px de cada lado del padding (19px X2) */
+    width: calc(100% - 380px);
+    padding: 0 102px;
+  }
+
+  .element__card-text {
+    background-color: white;
+    /* width: 246px; */
+  }
 }
 
 /* STYLES MEDEIAS QUERIS for 320px*/

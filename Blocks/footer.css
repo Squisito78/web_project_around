@@ -10,16 +10,19 @@
   padding: 0 767px 60px 200px;
 }
 
-/* STYLES MEDEIAS QUERIS for 320px*/
-@media screen and (max-width: 320px) {
+/* STYLES MEDEIAS QUERIS for 768px*/
+@media screen and (max-width: 768px) {
   .footer__copyright {
     font-size: 14px;
     max-width: 282px;
-    /* Al width se resta 19px de cada lado del padding (19px X2) */
-    width: calc(100% - 38px);
-    padding: 0 19px 36px;
+    padding: 0;
     height: 14px;
-    margin: 0;
-    /* align-items: start; */
+    margin: 0 auto 60px 102px;
+  }
+}
+/* STYLES MEDEIAS QUERIS for 320px*/
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    margin: 0 auto 35px;
   }
 }
