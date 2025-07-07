@@ -1,8 +1,10 @@
-//---------->   PASO #1     SECCIONAMOS ELEMENTOS DEL DOM
+//---------->   PASO #1     SECCIONAMOS ELEMENTOS DEL DOM     <---------------------
 
-// AQUI DEFINIMOS LAS CONSTANTES Y PARA ELLO, HAY DE VARIOS TIPOS (), en esta ocacion utilizaremos la constante "const"
+// AQUI DEFINIMOS LAS CONSTANTES Y PARA ELLO, HAY DE VARIOS TIPOS (),
+// en esta ocacion utilizaremos la constante "const"
 
-//Aqui Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS ya tambien por su ID (#)
+//Aqui Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS
+// y tambien por su ID (#)
 //--->botones
 const editButton = document.querySelector(".header__profile-edit-button");
 const closeButton = document.querySelector(".popup__close-button");
@@ -18,7 +20,7 @@ const form = document.querySelector(".popup__form");
 const nameImput = document.querySelector("#name");
 const aboutImput = document.querySelector("#about");
 
-//---------->   PASO #2     CREAR FUNCIONALIDAD O MANIPULACION
+//---------->   PASO #2     CREAR FUNCIONALIDAD O MANIPULACION   <-----------------------
 
 const closePopup = () => {
   popup.classList.remove("popup-open");
@@ -30,7 +32,7 @@ const openPopup = () => {
   aboutImput.value = titleSecondText.textContent;
 };
 
-//--------->   PASO #3   PROGRAMAMOS LOS EVENTOS LLAMANDO A UNA FUNCION
+//--------->   PASO #3   PROGRAMAMOS LOS EVENTOS LLAMANDO A UNA FUNCION    <-------------------
 editButton.addEventListener("click", () => {
   openPopup();
 });
