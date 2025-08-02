@@ -2,7 +2,8 @@
 @import url(../vendor/fonts.css);
 @import url(../Blocks/header.css);
 @import url(../Blocks/page.css);
-@import url(../Blocks/Element.css);
+@import url(../Blocks/element.css);
 @import url(../Blocks/footer.css);
 @import url(../Blocks/popup.css);
 @import url(../scripts/index.js);
+@import url(../Blocks/popup_places.css);

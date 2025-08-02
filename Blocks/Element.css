@@ -13,9 +13,10 @@
 .element {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.element-grid__card {
+.element__grid-card {
   max-width: 282px;
   height: 282px;
   box-sizing: border-box;
@@ -23,9 +24,19 @@
   border-top-right-radius: 10px;
   box-sizing: border-box;
 }
+.content__card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  max-width: 282px;
+  /* add */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 .element__card-text {
-  background-color: white;
   /* width: 246px; */
   color: black;
   font-family: "Inter";
@@ -35,14 +46,37 @@
   letter-spacing: 0%;
   display: flex;
   justify-content: space-between;
-  margin: 0;
-  padding: 25px 15px 31px 21px;
+  margin: 25px 15px 31px 21px;
+  /* padding: 25px 15px 31px 21px; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .element__card-group-vector {
   max-width: 21px;
   height: 19px;
+  background-image: url("../Pictures/Heart_Black.svg");
 }
+.element__card-group-vector-active {
+  background-image: url("../Pictures/Heart_White.png");
+}
+
+.element__trash-white {
+  max-width: 18px;
+  width: 100%;
+  top: 5px;
+  left: 5px;
+  opacity: 1;
+  position: absolute;
+  z-index: 1;
+}
+/* .element__trash:hover {
+  border: solid 1px grey;
+  max-width: 28px;
+  border-radius: 5px;
+  background-image: url("../Pictures/Trash_grey.svg");
+} */
 
 /* STYLES MEDEIAS QUERIS for 768px*/
 @media screen and (max-width: 768px) {
@@ -55,11 +89,10 @@
     width: calc(100% - 380px);
     padding: 0 102px;
   }
-
-  .element__card-text {
-    background-color: white;
-    /* width: 246px; */
-  }
+}
+.element__card-text {
+  background-color: white;
+  /* width: 246px; */
 }
 
 /* STYLES MEDEIAS QUERIS for 320px*/
