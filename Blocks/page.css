@@ -7,4 +7,5 @@
   position: relative;
   font-family: "Inter";
   overflow: hidden;
+  background-attachment: fixed;
 }
