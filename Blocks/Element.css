@@ -14,10 +14,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 282px;
 }
 
 .element__grid-card {
   max-width: 282px;
+  width: 100%;
   height: 282px;
   box-sizing: border-box;
   border-top-left-radius: 10px;
@@ -34,6 +36,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-right: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 0;
 }
 
 .element__card-text {
@@ -44,8 +50,8 @@
   font-size: 24px;
   line-height: 29.05px;
   letter-spacing: 0%;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   margin: 25px 15px 31px 21px;
   /* padding: 25px 15px 31px 21px; */
   text-overflow: ellipsis;
@@ -53,30 +59,39 @@
   overflow: hidden;
 }
 
-.element__card-group-vector {
+.element__card-like {
   max-width: 21px;
+  width: 100%;
   height: 19px;
+  border: none;
+  background-image: url("../Pictures/Heart_White.png");
+  background-color: transparent;
+}
+.element__card-like-active {
   background-image: url("../Pictures/Heart_Black.svg");
 }
-.element__card-group-vector-active {
-  background-image: url("../Pictures/Heart_White.png");
-}
 
-.element__trash-white {
+.element__trash {
+  position: relative;
+}
+.element__trash-icon {
+  background-image: url("../Pictures/Trash_white.svg");
+  position: absolute;
   max-width: 18px;
   width: 100%;
-  top: 5px;
-  left: 5px;
+  top: 18px;
+  right: 15px;
   opacity: 1;
-  position: absolute;
-  z-index: 1;
+  z-index: 0;
+  height: 18px;
+  border: none;
+  background-color: transparent;
 }
-/* .element__trash:hover {
-  border: solid 1px grey;
-  max-width: 28px;
-  border-radius: 5px;
+.element__trash-icon:hover {
   background-image: url("../Pictures/Trash_grey.svg");
-} */
+  cursor: pointer;
+}
+
 
 /* STYLES MEDEIAS QUERIS for 768px*/
 @media screen and (max-width: 768px) {
@@ -86,10 +101,17 @@
     grid-template-rows: repeat(3, 1fr);
     max-width: 768px;
     /* al Width se resta 19px de cada lado del padding (19px X2) */
-    width: calc(100% - 380px);
-    padding: 0 102px;
+    width: calc(100% - 38px);
+    /* padding: 0 102px; */
+    place-items: center;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .element {
+    width: 282px;
   }
 }
+
 .element__card-text {
   background-color: white;
   /* width: 246px; */

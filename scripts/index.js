@@ -1,18 +1,20 @@
-// AQUI DEFINIMOS LAS CONSTANTES Y PARA ELLO, HAY DE VARIOS TIPOS (),
-// en esta ocacion utilizaremos la constante "const"
+// AQUI DEFINIMOS LAS CONSTANTES
 
-//Aqui Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS
-// y tambien por su ID (#)
-//--->botones
+//Y PARA ELLO, HAY DE VARIOS TIPOS (), en esta ocacion utilizaremos la constante "const"
+
+//Aqui creamos CONST, Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS
+// o  por su ID (#)
+
+//----- botones----->
 const editButton = document.querySelector(".header__profile-edit-button");
 const closeButton = document.querySelector(".popup__close-button");
 
-//--->popup
+//----- popup----->
 const popup = document.querySelector(".popup");
 const titleFistText = document.querySelector(".header__profile-first-text");
 const titleSecondText = document.querySelector(".header__profile-second-text");
 
-//--->form
+//----- form Popup INPUT ----->
 const form = document.querySelector(".popup__form");
 const nameImput = document.querySelector("#name"); //NOTA: tambien podemos usar para llamar un elememto por su Id, usando getElementById("elemento Id sin #")
 const aboutImput = document.querySelector("#about");
@@ -20,20 +22,20 @@ const aboutImput = document.querySelector("#about");
 //--->Templade
 const templateCard = document.querySelector("#template"); //creamos ésta cte, para seleccionar y llamar por su #Id de TEMPLADE
 
-// ------->  Secciones de los elementos
+// ------>  Secciones de los elementos
 const section = document.querySelector(".elements");
 
-//---- Popup Places/Lugares
+//---- POPUP PLACES      --------------->
 const popupPlaces = document.querySelector(".popup-places");
 
-// Boton de add Lugares
+// ----- Boton de add & remove PLACES ----->
 const addButtonPlaces = document.querySelector(".header__profile-add-button");
 const removeButtonPlaces = document.querySelector(".popup-place__close-button");
 
-// Formulario
+// ----- Form Popup PLACES ----->
 const popupPlaceForm = document.querySelector(".popup-place__form");
 
-// LOS SIGIENTES ARRAYS NOS LO FACILITÓ LA PLATAFORMA TRIPLETEN
+// EL SIGIENTE ARRAY NOS LO FACILITÓ LA PLATAFORMA TRIPLETEN para crear las CARD
 const initialCards = [
   {
     name: "Valle de Yosemite", //NAME, es el nombre de la CARS
@@ -61,12 +63,22 @@ const initialCards = [
   },
 ];
 
-// 1.-   ⬇⬇⬇ A continuacion debemos de crear una función que cree CARS, a partir del ARRAYS anterior
+// ----- popup IMAGE ----->
+const popupImage = document.querySelector(".popup__image");
+const bigImage = document.querySelector(".popup__big-image");
+const titleImage = document.querySelector(".popup__title-image");
+
+// ----- boton de cerrado de popup image----->
+const closePopupImage = document.querySelector(".popup__close-button2");
+
+//----------->   FUNCIONES   <----------------------------------------------------------------------------------------------------------------->>>
+
+// 1.-   ⬇⬇⬇ A continuacion debemos de crear una función que cree CARS, a partir del ARRAY anterior
 // 2.- clonamos el contenido del TEMPLADE dentro del cuerpo de la funcion⏬ siguiente
 const createCard = (name, link) => {
-  //A continuación, dentro de ésta función clonamos los contenidos del TEMPLATE para crear un a nueva card,
-  // para ello llamamos a Templade, luego a su contenido con la propiedad CONTENT, y el contenido lo clonamos con el
-  //   metodo (cloneNode(true)), donde clonamos la constante (templateCard) que se creo en la parte superior
+  // Dentro de ésta función clonamos los contenidos del TEMPLATE para crear un a nueva card,
+  // para ello llamamos a Templade, luego a su contenido con la propiedad CONTENT, y el contenido lo clonamos
+  // con el metodo (cloneNode(true)), donde clonamos la constante (templateCard) que se creo en la parte superior
   const elementCard = templateCard.content.cloneNode(true);
 
   // ---------------         AHORA TOCA LA PERSONALIZACION       ----------------
@@ -77,27 +89,41 @@ const createCard = (name, link) => {
   imageCard.alt = name; //aqui llamamos a la contante con el atributo Alt,  que guarda en nimbre que le damos a esa link
   textCard.textContent = name;
 
-  // -->    Corasoncito
-  const buttonCard = elementCard.querySelector(".element__card-group-vector");
+  // ----- LIKE----->
+  const buttonCard = elementCard.querySelector(".element__card-like");
 
-  //--     Bote de basura
-  const trashCard = elementCard.querySelector(".element__trash-white");
+  //----- Bote de basura----->
+  const trashCard = elementCard.querySelector(".element__trash-icon");
 
   // ahora tenemos que add un evento al corazon y al bote de basura, por tanto traemos el elemento a la funión, lamando a la cte. cardElement
   trashCard.addEventListener("click", (e) => {
     const selecCard = buttonCard.closest(".element");
-    console.log("hola que tal", e);
+    console.log("PROVANDO FUNCINABILIDA #1", e);
     selecCard.remove();
   });
   buttonCard.addEventListener("click", () => {
-    buttonCard.classList.toggle("element__card-group-vector-active"); //El método toggle() en JavaScript, específicamente cuando se usa con classList, sirve para alternar la presencia de una clase CSS en un elemento HTML. Si la clase ya está presente, la elimina; si no está presente, la añade
+    buttonCard.classList.toggle("element__card-like-active"); //El método toggle() en JavaScript, específicamente cuando se usa con classList, sirve para alternar la presencia de una clase CSS en un elemento HTML. Si la clase ya está presente, la elimina; si no está presente, la añade
   });
+
+  imageCard.addEventListener("click", () => {
+    console.log("PROVANDO FUNCINABILIDA #2");
+    popupImage.classList.add("popup-open");
+    bigImage.src = link;
+    titleImage.textContent = name;
+  });
+
   return elementCard;
+
+  r;
+}; //Esta funct CREATE CARD  termina aqui.----------------------------------->
+
+const closeImage = () => {
+  popupImage.classList.remove("popup-open");
 };
 
-// evento formulario
-popupPlaceForm.addEventListener("submit", () => {
-  createNewCard();
+closePopupImage.addEventListener("click", () => {
+  closeImage();
+  console.log("para ver si....");
 });
 
 const closePopup = () => {
@@ -118,19 +144,30 @@ const closePopupPlaces = () => {
 };
 
 const createNewCard = (e) => {
-  e.preventDefault(); // para evitar que se recague la página por defecto, por tanto usamos este comando, esto es usado en los formularios
   // paso 2 aqui extraemos informacion del usuario de los imput o formularios
-  const addName = document.querySelectory("#Name-title").value;
-  const addLink = document.querySelectory("#link-image").value;
+  const addName = document.querySelector("#Name-title");
+  const addLink = document.querySelector("#link-image");
+  const valueName = addName.value;
+  const valueLink = addLink.value;
   // paso 3
-  const newCard = createCard(addName, addLink);
+  const newCard = createCard(valueName, valueLink);
   // paso 4 add la nueva card a la section
   section.prepend(newCard);
+  addName.value = "";
+  addLink.value = "";
 };
 
 initialCards.forEach((card) => {
   const newCard = createCard(card.name, card.link);
   section.appendChild(newCard);
+});
+
+// evento formulario
+popupPlaceForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // para evitar que se recague la página por defecto, por tanto usamos este comando, esto es usado en los formularios
+
+  createNewCard();
+  closePopupPlaces();
 });
 
 editButton.addEventListener("click", () => {
