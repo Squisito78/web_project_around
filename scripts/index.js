@@ -1,9 +1,5 @@
 // AQUI DEFINIMOS LAS CONSTANTES
 
-//Y PARA ELLO, HAY DE VARIOS TIPOS (), en esta ocacion utilizaremos la constante "const"
-
-//Aqui creamos CONST, Localizamos, llamamos o seleccionamos los elememtos por su clase tal cual se escribe en CSS
-// o  por su ID (#)
 
 //----- botones----->
 const editButton = document.querySelector(".header__profile-edit-button");
@@ -76,17 +72,15 @@ const closePopupImage = document.querySelector(".popup__close-button2");
 // 1.-   ⬇⬇⬇ A continuacion debemos de crear una función que cree CARS, a partir del ARRAY anterior
 // 2.- clonamos el contenido del TEMPLADE dentro del cuerpo de la funcion⏬ siguiente
 const createCard = (name, link) => {
-  // Dentro de ésta función clonamos los contenidos del TEMPLATE para crear un a nueva card,
-  // para ello llamamos a Templade, luego a su contenido con la propiedad CONTENT, y el contenido lo clonamos
-  // con el metodo (cloneNode(true)), donde clonamos la constante (templateCard) que se creo en la parte superior
+
   const elementCard = templateCard.content.cloneNode(true);
 
   // ---------------         AHORA TOCA LA PERSONALIZACION       ----------------
   // 1.- ahora llamanos a cada parte de los elementos
   const textCard = elementCard.querySelector(".element__card-text");
-  const imageCard = elementCard.querySelector(".element__grid-card"); // creamos una CTE, y selecionamoa nuestro elemento (CardElement) donde su clase es (".element__grid-card")
-  imageCard.src = link; //aqui llamamos a la contante con el atributo SRC, que guarda  una direccion electronica
-  imageCard.alt = name; //aqui llamamos a la contante con el atributo Alt,  que guarda en nimbre que le damos a esa link
+  const imageCard = elementCard.querySelector(".element__grid-card"); 
+  imageCard.src = link; 
+  imageCard.alt = name; 
   textCard.textContent = name;
 
   // ----- LIKE----->
@@ -199,96 +193,3 @@ form.addEventListener("submit", (e) => {
   // aboutImput.value = "";
   closePopup();
 });
-//
-//
-//
-//
-//
-//
-//
-//
-
-//     1   edintificar el boton
-//  const editButton = document.querySelector(".header__profile-edit-button");
-//
-// //    2     add un evento
-// editButton.addEventListener("click", () => {
-//   openPopup();
-// });
-
-//         3 crear la funcionalidad que ejecuta el evento
-
-// const openPopup = () => {
-//   popup.classList.add("popup-open");
-//   nameImput.value = titleFistText.textContent;
-//   aboutImput.value = titleSecondText.textContent;
-// };
-//
-//
-//       1.- Abrir el popup ✅
-//       2.- Extrae la Inf del Formulario, con esa información que extaraemos del usuario vamos a gestionar la nueva CARD
-//       3.- Gestion de crea la nueva card
-//       4.- Add la nueva CARD a la seccion de todas las card
-//       5.- cerrar el popup ✅
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

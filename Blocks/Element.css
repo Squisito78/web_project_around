@@ -43,17 +43,13 @@
 }
 
 .element__card-text {
-  /* width: 246px; */
   color: black;
   font-family: "Inter";
   font-weight: 900;
   font-size: 24px;
   line-height: 29.05px;
   letter-spacing: 0%;
-  /* display: flex; */
-  /* justify-content: space-between; */
   margin: 25px 15px 31px 21px;
-  /* padding: 25px 15px 31px 21px; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -114,7 +110,6 @@
 
 .element__card-text {
   background-color: white;
-  /* width: 246px; */
 }
 
 /* STYLES MEDEIAS QUERIS for 320px*/
