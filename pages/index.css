@@ -5,4 +5,5 @@
 @import url(../Blocks/element.css);
 @import url(../Blocks/footer.css);
 @import url(../Blocks/popup.css);
+@import url(../scripts/validate.js);
 @import url(../scripts/index.js);

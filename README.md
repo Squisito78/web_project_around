@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una página web que presenta un perfil de explorador, con una galería de imágenes de diferentes lugares naturales. Incluye un encabezado personalizado con logo y perfil, una sección de tarjetas con imágenes y nombres de destinos, y un pie de página con derechos de autor. Además, cuenta con un cuadro emergente para editar el perfil del usuario. La página está diseñada con HTML, CSS y JavaScript para la interactividad.
+Este proyecto es una página web que presenta un perfil de explorador, con una galería de imágenes de diferentes lugares naturales. Incluye un encabezado personalizado con logo y perfil, una sección de tarjetas con imágenes y nombres de destinos, y un pie de página con derechos de autor. Además, cuenta con un cuadro emergente para editar el perfil del usuario y tarjetas dinamicas. La página está diseñada con HTML, CSS y JavaScript para la interactividad.
 
 ## Autor
 
@@ -22,6 +22,10 @@ FIDEL_MARINY
 - Pie de página con derechos de autor
 - Cuadro emergente para editar perfil
 - Recursos gráficos en PNG y SVG
+- Tarjetas dinámicas
+- Modales que cierran con Esc y clic fuera (Requisito Checklist).
+- Validación de formularios completa (Requisito Checklist).
+
 
 ## Cómo usar
 

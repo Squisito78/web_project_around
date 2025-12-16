@@ -1,41 +1,41 @@
-// AQUI DEFINIMOS LAS CONSTANTES
+/* -------------------------------------------------------------------------- */
+/* VARIABLES                                 */
+/* -------------------------------------------------------------------------- */
 
+// Seccion de Elementos (Cards)
+const cardsContainer = document.querySelector(".elements");
+const cardTemplate = document.querySelector("#template").content;
 
-//----- botones----->
+// Popups (Ventanas Modales)
+// Seleccionamos todos los popups para aplicarles listeners universales
+const popups = document.querySelectorAll(".popup"); 
+
+// Botones de Apertura
 const editButton = document.querySelector(".header__profile-edit-button");
-const closeButton = document.querySelector(".popup__close-button");
+const addButton = document.querySelector(".header__profile-add-button");
 
-//----- popup----->
-const popup = document.querySelector(".popup");
-const titleFistText = document.querySelector(".header__profile-first-text");
-const titleSecondText = document.querySelector(".header__profile-second-text");
+// Formularios y Elementos de Perfil
+const profileForm = document.querySelector(".popup__form"); // Formulario de editar perfil
+const nameInput = document.querySelector("#name");
+const jobInput = document.querySelector("#about");
+const profileName = document.querySelector(".header__profile-first-text");
+const profileJob = document.querySelector(".header__profile-second-text");
 
-//----- form Popup INPUT ----->
-const form = document.querySelector(".popup__form");
-const nameImput = document.querySelector("#name"); //NOTA: tambien podemos usar para llamar un elememto por su Id, usando getElementById("elemento Id sin #")
-const aboutImput = document.querySelector("#about");
+// Formulario de Añadir Tarjeta
+const addCardForm = document.querySelector(".popup-place__form"); // Asegúrate que esta clase sea única para el form de añadir
+const titleInput = document.querySelector("#Name-title");
+const linkInput = document.querySelector("#link-image");
 
-//--->Templade
-const templateCard = document.querySelector("#template"); //creamos ésta cte, para seleccionar y llamar por su #Id de TEMPLADE
+// Popup de Imagen (Zoom)
+const imagePopup = document.querySelector(".popup__image"); // Contenedor del popup imagen
+const imagePopupElement = document.querySelector(".popup__big-image"); // La etiqueta <img>
+const imagePopupCaption = document.querySelector(".popup__title-image"); // El título de la imagen
 
-// ------>  Secciones de los elementos
-const section = document.querySelector(".elements");
-
-//---- POPUP PLACES      --------------->
-const popupPlaces = document.querySelector(".popup-places");
-
-// ----- Boton de add & remove PLACES ----->
-const addButtonPlaces = document.querySelector(".header__profile-add-button");
-const removeButtonPlaces = document.querySelector(".popup-place__close-button");
-
-// ----- Form Popup PLACES ----->
-const popupPlaceForm = document.querySelector(".popup-place__form");
-
-// EL SIGIENTE ARRAY NOS LO FACILITÓ LA PLATAFORMA TRIPLETEN para crear las CARD
+// Array de Datos Iniciales
 const initialCards = [
   {
-    name: "Valle de Yosemite", //NAME, es el nombre de la CARS
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg", //LINK; es la ruta
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
   },
   {
     name: "Lago Louise",
@@ -59,137 +59,174 @@ const initialCards = [
   },
 ];
 
-// ----- popup IMAGE ----->
-const popupImage = document.querySelector(".popup__image");
-const bigImage = document.querySelector(".popup__big-image");
-const titleImage = document.querySelector(".popup__title-image");
+/* -------------------------------------------------------------------------- */
+/* FUNCIONES UNIVERSALES                          */
+/* -------------------------------------------------------------------------- */
 
-// ----- boton de cerrado de popup image----->
-const closePopupImage = document.querySelector(".popup__close-button2");
+// Función para cerrar con la tecla Escape
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup-open");
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+}
 
-//----------->   FUNCIONES   <----------------------------------------------------------------------------------------------------------------->>>
+// Función Universal de Apertura
+function openPopup(popupElement) {
+  popupElement.classList.add("popup-open");
+  // Añadimos el listener de ESC solo cuando se abre el popup
+  document.addEventListener("keydown", handleEscClose);
+}
 
-// 1.-   ⬇⬇⬇ A continuacion debemos de crear una función que cree CARS, a partir del ARRAY anterior
-// 2.- clonamos el contenido del TEMPLADE dentro del cuerpo de la funcion⏬ siguiente
-const createCard = (name, link) => {
+// Función Universal de Cierre 
+function closePopup(popupElement) {
+  popupElement.classList.remove("popup-open");
+  // Eliminamos el listener de ESC cuando se cierra para ahorrar memoria
+  document.removeEventListener("keydown", handleEscClose);
+}
 
-  const elementCard = templateCard.content.cloneNode(true);
+/* -------------------------------------------------------------------------- */
+/* FUNCIONES DE TARJETAS                             */
+/* -------------------------------------------------------------------------- */
 
-  // ---------------         AHORA TOCA LA PERSONALIZACION       ----------------
-  // 1.- ahora llamanos a cada parte de los elementos
-  const textCard = elementCard.querySelector(".element__card-text");
-  const imageCard = elementCard.querySelector(".element__grid-card"); 
-  imageCard.src = link; 
-  imageCard.alt = name; 
-  textCard.textContent = name;
+// Función para crear una tarjeta (Retorna el elemento HTML) 
+function createCard(name, link) {
+  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
+  
+  const cardImage = cardElement.querySelector(".element__grid-card");
+  const cardTitle = cardElement.querySelector(".element__card-text");
+  const likeButton = cardElement.querySelector(".element__card-like");
+  const deleteButton = cardElement.querySelector(".element__trash-icon");
 
-  // ----- LIKE----->
-  const buttonCard = elementCard.querySelector(".element__card-like");
+  // Asignar datos
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardTitle.textContent = name;
 
-  //----- Bote de basura----->
-  const trashCard = elementCard.querySelector(".element__trash-icon");
-
-  // ahora tenemos que add un evento al corazon y al bote de basura, por tanto traemos el elemento a la funión, lamando a la cte. cardElement
-  trashCard.addEventListener("click", (e) => {
-    const selecCard = buttonCard.closest(".element");
-    console.log("PROVANDO FUNCINABILIDA #1", e);
-    selecCard.remove();
+  // Listeners internos de la tarjeta
+  
+  // 1. Like 
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("element__card-like-active");
   });
-  buttonCard.addEventListener("click", () => {
-    buttonCard.classList.toggle("element__card-like-active"); //El método toggle() en JavaScript, específicamente cuando se usa con classList, sirve para alternar la presencia de una clase CSS en un elemento HTML. Si la clase ya está presente, la elimina; si no está presente, la añade
+
+  // 2. Eliminar
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
-  imageCard.addEventListener("click", () => {
-    console.log("PROVANDO FUNCINABILIDA #2");
-    popupImage.classList.add("popup-open");
-    bigImage.src = link;
-    titleImage.textContent = name;
+  // 3. Abrir Popup de Imagen
+  cardImage.addEventListener("click", () => {
+    imagePopupElement.src = link;
+    imagePopupElement.alt = name;
+    imagePopupCaption.textContent = name;
+    openPopup(imagePopup); // Usamos la variable correcta del popup de imagen
   });
 
-  return elementCard;
+  return cardElement;
+}
 
-  r;
-}; //Esta funct CREATE CARD  termina aqui.----------------------------------->
+// Función para renderizar tarjetas en el DOM
+function renderCard(cardElement) {
+  cardsContainer.prepend(cardElement);
+}
 
-const closeImage = () => {
-  popupImage.classList.remove("popup-open");
-};
+/* -------------------------------------------------------------------------- */
+/* MANEJO DE EVENTOS                               */
+/* -------------------------------------------------------------------------- */
 
-closePopupImage.addEventListener("click", () => {
-  closeImage();
-  console.log("para ver si....");
+// Renderizar las 6 tarjetas iniciales
+initialCards.forEach((cardData) => {
+  const newCard = createCard(cardData.name, cardData.link);
+  cardsContainer.append(newCard); // Usamos append para mantener el orden inicial
 });
 
-const closePopup = () => {
-  popup.classList.remove("popup-open");
-};
-
-const openPopup = () => {
-  popup.classList.add("popup-open");
-  nameImput.value = titleFistText.textContent;
-  aboutImput.value = titleSecondText.textContent;
-};
-
-const openPopupPlaces = () => {
-  popupPlaces.classList.add("popup-open");
-};
-const closePopupPlaces = () => {
-  popupPlaces.classList.remove("popup-open");
-};
-
-const createNewCard = (e) => {
-  // paso 2 aqui extraemos informacion del usuario de los imput o formularios
-  const addName = document.querySelector("#Name-title");
-  const addLink = document.querySelector("#link-image");
-  const valueName = addName.value;
-  const valueLink = addLink.value;
-  // paso 3
-  const newCard = createCard(valueName, valueLink);
-  // paso 4 add la nueva card a la section
-  section.prepend(newCard);
-  addName.value = "";
-  addLink.value = "";
-};
-
-initialCards.forEach((card) => {
-  const newCard = createCard(card.name, card.link);
-  section.appendChild(newCard);
+// Listener para el formulario de "Editar Perfil"
+profileForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  
+  // Identificamos el popup padre y lo cerramos
+  const popupElement = document.querySelector(".popup"); 
+  closePopup(popupElement);
 });
 
-// evento formulario
-popupPlaceForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // para evitar que se recague la página por defecto, por tanto usamos este comando, esto es usado en los formularios
+// Listener para el formulario de "Añadir Tarjeta" 
+addCardForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const newCard = createCard(titleInput.value, linkInput.value);
+  renderCard(newCard);
+  
+  // Reseteamos el formulario
+  addCardForm.reset();
+  
+  // Identificamos el popup de añadir lugares y lo cerramos
+  const popupPlaces = document.querySelector(".popup-places");
+  closePopup(popupPlaces);
 
-  createNewCard();
-  closePopupPlaces();
+  // Opcional: Deshabilitar botón de guardar tras el envío (para validación)
+  // const submitButton = addCardForm.querySelector('.popup__button');
+  // submitButton.classList.add('popup__button_disabled');
+  // submitButton.disabled = true;
 });
 
+// Listeners de Apertura (Botones)
 editButton.addEventListener("click", () => {
-  openPopup();
+  // Rellenar inputs con valores actuales
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  
+  const popupProfile = document.querySelector(".popup"); 
+  openPopup(popupProfile);
 });
 
-closeButton.addEventListener("click", () => {
-  closePopup();
+addButton.addEventListener("click", () => {
+  const popupPlaces = document.querySelector(".popup-places");
+  openPopup(popupPlaces);
 });
 
-addButtonPlaces.addEventListener("click", () => {
-  openPopupPlaces();
-});
-removeButtonPlaces.addEventListener("click", () => {
-  closePopupPlaces();
+/* -------------------------------------------------------------------------- */
+/* CIERRE UNIVERSAL (Overlay y Botón X)                     */
+/* -------------------------------------------------------------------------- */
+
+// Iteramos sobre todos los popups para agregar listener de click
+// Esto cubre el requisito: "cerrar al hacer clic fuera (overlay) o en la X" 
+popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    // Cerramos si el click fue en el overlay (el propio div .popup) 
+    // O si el click fue en el botón de cerrar (.popup__close-button)
+    if (
+      evt.target.classList.contains("popup") || 
+      evt.target.classList.contains("popup-places") ||
+      evt.target.classList.contains("popup__image") ||
+      evt.target.classList.contains("popup-open") ||
+      evt.target.classList.contains("popup__close-button") ||
+      evt.target.classList.contains("popup__close-button2") ||
+      evt.target.classList.contains("popup-place__close-button")
+    ) {
+      closePopup(popup);
+    }
+  });
 });
 
-// EVENTOS DE MI FORMULARIO
+/* -------------------------------------------------------------------------- */
+/* VALIDACIÓN                                  */
+/* -------------------------------------------------------------------------- */
+// Aquí solo definimos la configuración y llamamos a la función de activación.
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let nameValue = nameImput.value;
-  let aboutValue = aboutImput.value;
-  titleFistText.textContent = nameValue;
-  titleSecondText.textContent = aboutValue;
-  //NOTA: ⬇ estos valores o funcionalidades vacios, se asignan despues de hecer la asignción
-  //  para que en nuevo valor quede guardado y reseteado form
-  // nameImput.value = "";
-  // aboutImput.value = "";
-  closePopup();
-});
+const validationConfig = {
+  formSelector: ".popup__form", 
+  // Nota: Asegúrate de que ambos formularios tengan esta clase o agrega '.popup-place__form' a tu CSS
+  // Si tus formularios tienen clases distintas, usa una clase común o ajusta el selector.
+  inputSelector: ".popup__input", 
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+};
+
+// Llamamos a la función que viene de validate.js
+enableValidation(validationConfig);
