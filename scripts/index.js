@@ -9,22 +9,22 @@ const cardTemplate = document.querySelector("#template").content;
 // Popups (Ventanas Modales)
 // Seleccionamos todos los popups para aplicarles listeners universales
 const popups = document.querySelectorAll(".popup"); 
-
+const profilePopup = document.querySelector(".popup"); // Esta es la que no encontrabas OOOOOJJJJJOOOOOOO  ADD
 // Botones de Apertura
 const editButton = document.querySelector(".header__profile-edit-button");
 const addButton = document.querySelector(".header__profile-add-button");
 
 // Formularios y Elementos de Perfil
 const profileForm = document.querySelector(".popup__form"); // Formulario de editar perfil
-const nameInput = document.querySelector("#name");
-const jobInput = document.querySelector("#about");
+const nameInput = document.querySelector("#name-input");
+const jobInput = document.querySelector("#about-input");
 const profileName = document.querySelector(".header__profile-first-text");
 const profileJob = document.querySelector(".header__profile-second-text");
 
 // Formulario de Añadir Tarjeta
 const addCardForm = document.querySelector(".popup-place__form"); // Asegúrate que esta clase sea única para el form de añadir
-const titleInput = document.querySelector("#Name-title");
-const linkInput = document.querySelector("#link-image");
+const titleInput = document.querySelector("#title-input");
+const linkInput = document.querySelector("#url-input");
 
 // Popup de Imagen (Zoom)
 const imagePopup = document.querySelector(".popup__image"); // Contenedor del popup imagen
@@ -62,33 +62,35 @@ const initialCards = [
 /* -------------------------------------------------------------------------- */
 /* FUNCIONES UNIVERSALES                          */
 /* -------------------------------------------------------------------------- */
-
-// Función para cerrar con la tecla Escape
-function handleEscClose(evt) {
+// 1. Definimos qué pasa cuando se presiona una tecla
+const closeByEscape = (evt) => {
+  // Verificamos si la tecla presionada es 'Escape'
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup-open");
+    // Buscamos el popup que tenga la clase que lo mantiene visible
+    const openedPopup = document.querySelector(".popup-open"); 
     if (openedPopup) {
-      closePopup(openedPopup);
+      closePopup(openedPopup); // Llamamos a tu función de cerrar
     }
   }
-}
+};
+
 
 // Función Universal de Apertura
-function openPopup(popupElement) {
-  popupElement.classList.add("popup-open");
-  // Añadimos el listener de ESC solo cuando se abre el popup
-  document.addEventListener("keydown", handleEscClose);
+function openPopup(popup) {
+  popup.classList.add("popup-open");
+  // AGREGAR: Escuchar el teclado cuando se abre
+  document.addEventListener("keydown", closeByEscape);
 }
 
 // Función Universal de Cierre 
-function closePopup(popupElement) {
-  popupElement.classList.remove("popup-open");
-  // Eliminamos el listener de ESC cuando se cierra para ahorrar memoria
-  document.removeEventListener("keydown", handleEscClose);
+function closePopup(popup) {
+  popup.classList.remove("popup-open");
+  // AGREGAR: Dejar de escuchar el teclado cuando se cierra
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 /* -------------------------------------------------------------------------- */
-/* FUNCIONES DE TARJETAS                             */
+/*                       FUNCIONES DE TARJETAS                                */
 /* -------------------------------------------------------------------------- */
 
 // Función para crear una tarjeta (Retorna el elemento HTML) 
@@ -134,7 +136,7 @@ function renderCard(cardElement) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* MANEJO DE EVENTOS                               */
+/*                            MANEJO DE EVENTOS                               */
 /* -------------------------------------------------------------------------- */
 
 // Renderizar las 6 tarjetas iniciales
@@ -167,42 +169,49 @@ addCardForm.addEventListener("submit", (evt) => {
   const popupPlaces = document.querySelector(".popup-places");
   closePopup(popupPlaces);
 
-  // Opcional: Deshabilitar botón de guardar tras el envío (para validación)
-  // const submitButton = addCardForm.querySelector('.popup__button');
-  // submitButton.classList.add('popup__button_disabled');
-  // submitButton.disabled = true;
+
+
+//--------------------------------------------------------------------------------------------------------
+// Deshabilitar botón de guardar tras el envío (para validación)
+ const submitButton = addCardForm.querySelector('.popup__button');
+   submitButton.classList.add('popup__button_disabled');
+   submitButton.disabled = true;
 });
 
 // Listeners de Apertura (Botones)
 editButton.addEventListener("click", () => {
-  // Rellenar inputs con valores actuales
+  // Rellenar los campos (inputs) del formulario con valores actuales
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   
-  const popupProfile = document.querySelector(".popup"); 
-  openPopup(popupProfile);
 });
+
+editButton.addEventListener("click", () => {                   
+  const profilePopup = document.querySelector(".popup");
+  openPopup(profilePopup);
+});
+
 
 addButton.addEventListener("click", () => {
   const popupPlaces = document.querySelector(".popup-places");
   openPopup(popupPlaces);
 });
-
 /* -------------------------------------------------------------------------- */
-/* CIERRE UNIVERSAL (Overlay y Botón X)                     */
+/*                   CIERRE UNIVERSAL (Overlay y Botón X)                     */
 /* -------------------------------------------------------------------------- */
 
 // Iteramos sobre todos los popups para agregar listener de click
 // Esto cubre el requisito: "cerrar al hacer clic fuera (overlay) o en la X" 
-popups.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
-    // Cerramos si el click fue en el overlay (el propio div .popup) 
-    // O si el click fue en el botón de cerrar (.popup__close-button)
+// Seleccionamos todos los elementos con la clase .popup
+const popupsList = document.querySelectorAll(".popup");
+
+popupsList.forEach((popup) => {
+  // Usamos 'mousedown' para que sea más fluido el cierre
+  popup.addEventListener("mousedown", (evt) => {
+    // Si el clic es en la clase 'popup__overlay' (el fondo oscuro)
+    // O si el clic es en un botón de cerrar
     if (
-      evt.target.classList.contains("popup") || 
-      evt.target.classList.contains("popup-places") ||
-      evt.target.classList.contains("popup__image") ||
-      evt.target.classList.contains("popup-open") ||
+      evt.target.classList.contains("popup__overlay") || 
       evt.target.classList.contains("popup__close-button") ||
       evt.target.classList.contains("popup__close-button2") ||
       evt.target.classList.contains("popup-place__close-button")
@@ -213,20 +222,19 @@ popups.forEach((popup) => {
 });
 
 /* -------------------------------------------------------------------------- */
-/* VALIDACIÓN                                  */
+/*                                VALIDACIÓN                                  */
 /* -------------------------------------------------------------------------- */
-// Aquí solo definimos la configuración y llamamos a la función de activación.
 
+// Aquí solo definimos la configuración y llamamos a la función de activación.
+// Este es el objeto que pide el proyecto
 const validationConfig = {
-  formSelector: ".popup__form", 
-  // Nota: Asegúrate de que ambos formularios tengan esta clase o agrega '.popup-place__form' a tu CSS
-  // Si tus formularios tienen clases distintas, usa una clase común o ajusta el selector.
-  inputSelector: ".popup__input", 
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible"
 };
 
-// Llamamos a la función que viene de validate.js
+// Llamamos a la función de validate.js pasando el objeto
 enableValidation(validationConfig);

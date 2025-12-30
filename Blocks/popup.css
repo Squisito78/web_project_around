@@ -24,6 +24,7 @@
   box-shadow: 0px 0px 25px 0px #00000026;
   border-radius: 10px;
 }
+
 .popup__close-button {
   background-color: #2a2c2f;
   width: 40px;
@@ -34,6 +35,7 @@
   position: absolute;
   border: none;
 }
+
 .popup__close-button:hover {
   opacity: 60%;
   cursor: pointer;
@@ -44,7 +46,7 @@
   height: 330px;
 }
 
-.popup__imput {
+.popup__input {
   border-top: none;
   border-left: none;
   border-right: none;
@@ -54,12 +56,11 @@
   top: 306px;
   left: 460px;
   border-width: 1px;
-  margin: 0 37px 29.4px 35px;
+  margin: 0 37px 5px 35px;
   color: #c4c4c4;
 }
 
-.popup__overlay {
-}
+.popup__overlay {}
 
 .popup__title {
   color: black;
@@ -73,7 +74,8 @@
   z-index: 10;
 }
 
-.popup__save-button {
+.popup__save-button 
+{
   width: 358px;
   height: 50.1519775390625px;
   top: 438.34px;
@@ -86,6 +88,9 @@
   background-color: #ffffff;
   box-shadow: 0px 0px 25px 0px #00000026;
 }
+.header__profile-edit-button {
+
+}
 
 /* STYLES MEDEIAS QUERIS for 768px*/
 @media screen and (max-width: 768px) {
@@ -96,13 +101,14 @@
     left: 175px;
   }
 
-  .popup__imput {
+  .popup__input {
     color: green;
   }
 
   .popup__title {
     margin-bottom: 34px;
   }
+
   .popup__save-button {
     color: green;
     background-color: lightgreen;
@@ -144,7 +150,7 @@
     height: 322px;
   }
 
-  .popup__imput {
+  .popup__input {
     width: 238px;
     height: 26px;
     border-width: 1px;
@@ -171,6 +177,11 @@
   }
 }
 
+.popup-perfil {
+
+  position: fixed;
+}
+
 /*--------------------------------------------sTYLES  POPUP PLACES   -------------------------------------------------------------->>>>>> */
 
 .popup-places {
@@ -194,8 +205,9 @@
   box-shadow: 0px 0px 25px 0px #00000026;
   border-radius: 10px;
 }
+
 .popup-place__close-button {
-  background-color:transparent;
+  background-color: transparent;
   width: 40px;
   height: 40px;
   top: -46px;
@@ -204,6 +216,7 @@
   position: absolute;
   border: none;
 }
+
 .popup-place__close-button:hover {
   opacity: 60%;
   cursor: pointer;
@@ -214,7 +227,7 @@
   height: 330px;
 }
 
-.popup-place__imput {
+.popup-place__input {
   font-family: "Inter";
   font-weight: 400;
   font-size: 14px;
@@ -232,8 +245,7 @@
   color: #c4c4c4;
 }
 
-.popup-place__overlay {
-}
+.popup-place__overlay {}
 
 .popup-place__title {
   color: black;
@@ -272,13 +284,14 @@
     left: 175px;
   }
 
-  .popup-place__imput {
+  .popup-place__input {
     color: red;
   }
 
   .popup-place__title {
     margin-bottom: 34px;
   }
+
   .popup-place__save-button {
     color: blue;
     background-color: rgb(214, 214, 214);
@@ -316,7 +329,7 @@
     height: 322px;
   }
 
-  .popup-place__imput {
+  .popup-place__input {
     width: 238px;
     height: 26px;
     border-width: 1px;
@@ -355,6 +368,7 @@
   z-index: -1;
   opacity: 0.5;
 }
+
 .popup__image {
   position: absolute;
   display: none;
@@ -451,4 +465,42 @@
     display: flex;
     justify-content: center;
   }
+}
+
+
+
+
+
+/*---------------------------------------ADD Class  red Button------------------------*/
+/* Estilo para el input cuando tiene error (Borde rojo) */
+.popup__input_type_error {
+  border-bottom: 1px solid red;
+  background-color: beige;
+}
+
+/* Estilo para el mensaje de error (Texto rojo) */
+.popup__error_visible {
+  background-color: yellowgreen;
+  color: red;
+  font-family: "inter";
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  display: block;
+  margin-left: 36px;
+  min-height: 15px;  /* Evita que el formulario brinque */
+  max-width: 220px;
+}
+
+/* Estilo para el botón DESACTIVADO */
+.popup__button_disabled {
+  background-color: blue;
+  color: #c4c4c4;
+  border: 1px solid #c4c4c4;
+  cursor: default;
+  /* El mouse no muestra la manito */
+  opacity: 0.5;
+  pointer-events: none;
+  /* Asegura que no se pueda hacer clic */
 }
