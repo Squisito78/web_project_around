@@ -26,7 +26,7 @@
 }
 
 .popup__close-button {
-  background-color: #2a2c2f;
+  background-color: transparent;
   width: 40px;
   height: 40px;
   top: -46px;
@@ -69,7 +69,7 @@
   font-size: 24px;
   line-height: 100%;
   padding: 34px 64px 0 36px;
-  margin-bottom: 54px;
+  margin-bottom: 48px;
   margin-top: 0;
   z-index: 10;
 }
@@ -89,10 +89,14 @@
   box-shadow: 0px 0px 25px 0px #00000026;
 }
 .header__profile-edit-button {
-
 }
 
-/* STYLES MEDEIAS QUERIS for 768px*/
+.popup-perfil {
+  position: fixed;
+}
+
+
+/* STYLES MEDEIAS QUERIS for 768px------------------------------------*/
 @media screen and (max-width: 768px) {
   .popup-open {
     width: 330px;
@@ -126,7 +130,7 @@
   }
 }
 
-/* STYLES MEDEIAS QUERIS for 320px*/
+/* STYLES MEDEIAS QUERIS for 320px-------------------------------------------------*/
 @media screen and (max-width: 320px) {
   .popup {
     width: 282px;
@@ -152,16 +156,16 @@
 
   .popup__input {
     width: 238px;
-    height: 26px;
+    height: 15px;
     border-width: 1px;
-    margin: 0 22px 30px;
+    margin: 0 22px 2px;
     color: #000000;
   }
 
   .popup__title {
     font-size: 18px;
     padding: 25px 22px 0 22px;
-    margin-bottom: 76px;
+    margin-bottom: 56px;
     margin-top: 0;
   }
 
@@ -175,12 +179,9 @@
     margin: 16px 22px 25px 22px;
     background-color: #000000;
   }
+  
 }
 
-.popup-perfil {
-
-  position: fixed;
-}
 
 /*--------------------------------------------sTYLES  POPUP PLACES   -------------------------------------------------------------->>>>>> */
 
@@ -241,7 +242,7 @@
   top: 306px;
   left: 460px;
   border-width: 1px;
-  margin: 0 37px 29.4px 35px;
+  margin: 0 37px 5px 35px;
   color: #c4c4c4;
 }
 
@@ -333,7 +334,7 @@
     width: 238px;
     height: 26px;
     border-width: 1px;
-    margin: 0 22px 30px;
+    margin: 0 22px 0px 30px;
     color: #000000;
   }
 
@@ -353,8 +354,8 @@
     border: 1px solid #c4c4c4;
     margin: 16px 22px 25px 22px;
     background-color: #000000;
-  }
-}
+  }}
+  
 
 /*--------------------------------------- STYLES POPUP IMAGE --------------------------------------------->>>>*/
 
@@ -475,12 +476,13 @@
 /* Estilo para el input cuando tiene error (Borde rojo) */
 .popup__input_type_error {
   border-bottom: 1px solid red;
-  background-color: beige;
+  /* background-color: beige; */
 }
 
 /* Estilo para el mensaje de error (Texto rojo) */
-.popup__error_visible {
-  background-color: yellowgreen;
+/* .popup__error_visible */
+.popup__error  {
+  /* background-color: rgb(213, 229, 182); */
   color: red;
   font-family: "inter";
   font-size: 12px;
@@ -490,12 +492,17 @@
   display: block;
   margin-left: 36px;
   min-height: 15px;  /* Evita que el formulario brinque */
-  max-width: 220px;
+  width: 220px;
+  height: 16px;
+  padding-bottom: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* Estilo para el botón DESACTIVADO */
 .popup__button_disabled {
-  background-color: blue;
+  /* background-color: blue; */
   color: #c4c4c4;
   border: 1px solid #c4c4c4;
   cursor: default;
@@ -503,4 +510,11 @@
   opacity: 0.5;
   pointer-events: none;
   /* Asegura que no se pueda hacer clic */
+}
+
+@media screen and (max-width: 320px) {
+  .popup__error {
+    margin-left: 20px;
+  }
+}
 }

@@ -31,6 +31,15 @@ const imagePopup = document.querySelector(".popup__image"); // Contenedor del po
 const imagePopupElement = document.querySelector(".popup__big-image"); // La etiqueta <img>
 const imagePopupCaption = document.querySelector(".popup__title-image"); // El título de la imagen
 
+// Cerrar Popup Place desde la X
+const closePopupPlace = document.querySelector(".popup-place__close-button")
+
+// Cerrar Popup Edit Perfil desde la X
+ const closePopupEditPerfil = document.querySelector(".popup__close-button")
+
+
+
+
 // Array de Datos Iniciales
 const initialCards = [
   {
@@ -168,15 +177,25 @@ addCardForm.addEventListener("submit", (evt) => {
   // Identificamos el popup de añadir lugares y lo cerramos
   const popupPlaces = document.querySelector(".popup-places");
   closePopup(popupPlaces);
-
-
-
 //--------------------------------------------------------------------------------------------------------
 // Deshabilitar botón de guardar tras el envío (para validación)
  const submitButton = addCardForm.querySelector('.popup__button');
    submitButton.classList.add('popup__button_disabled');
    submitButton.disabled = true;
 });
+
+//evento de cerrado popup Place // Cerrar Popup Place desde la X
+closePopupPlace.addEventListener("click", () => {
+   const popupElement = document.querySelector(".popup-places"); 
+  closePopup(popupElement);
+})
+
+//evento de cerrado popup Edit Perfil // Cerrar Popup Place desde la X
+closePopupEditPerfil.addEventListener("click", () => {
+   const popupElement = document.querySelector(".popup-perfil"); 
+  closePopup(popupElement);
+})
+
 
 // Listeners de Apertura (Botones)
 editButton.addEventListener("click", () => {
