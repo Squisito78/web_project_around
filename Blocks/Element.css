@@ -21,7 +21,6 @@
   max-width: 282px;
   width: 100%;
   height: 282px;
-  box-sizing: border-box;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-sizing: border-box;
@@ -108,9 +107,6 @@
   }
 }
 
-.element__card-text {
-  background-color: white;
-}
 
 /* STYLES MEDEIAS QUERIS for 320px*/
 @media screen and (max-width: 320px) {
