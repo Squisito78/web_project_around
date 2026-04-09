@@ -1,8 +1,11 @@
+// Importaciones estandarizadas
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { openPopup, closePopup } from "./utils.js";
 
-/* --- VARIABLES --- */
+/* -------------------------------------------------------------------------- */
+/* VARIABLES                                  */
+/* -------------------------------------------------------------------------- */
 const cardsContainer = document.querySelector(".elements");
 const editButton = document.querySelector(".header__profile-edit-button");
 const addButton = document.querySelector(".header__profile-add-button");
@@ -11,12 +14,13 @@ const addButton = document.querySelector(".header__profile-add-button");
 const profileForm = document.querySelector(".popup__form"); 
 const addCardForm = document.querySelector(".popup-place__form");
 
-// Datos de Perfil
+// Inputs y Textos de Perfil
 const nameInput = document.querySelector("#name-input");
 const jobInput = document.querySelector("#about-input");
 const profileName = document.querySelector(".header__profile-first-text");
 const profileJob = document.querySelector(".header__profile-second-text");
 
+// Tarjetas Iniciales
 const initialCards = [
     { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
     { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg" },
@@ -26,21 +30,23 @@ const initialCards = [
     { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" }
 ];
 
-/* --- LOGICA DE TARJETAS --- */
-
-// Función para crear una instancia de Card
+/* -------------------------------------------------------------------------- */
+/* LÓGICA DE TARJETAS                              */
+/* -------------------------------------------------------------------------- */
 function createCardInstance(item) {
+  // Instanciamos la clase Card
   const card = new Card(item, "#template");
   return card.generateCard();
 }
 
-// Renderizar iniciales
+// Renderizado inicial
 initialCards.forEach((item) => {
   cardsContainer.append(createCardInstance(item));
 });
 
-/* --- VALIDACION --- */
-
+/* -------------------------------------------------------------------------- */
+/* VALIDACIÓN                                   */
+/* -------------------------------------------------------------------------- */
 const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -50,29 +56,31 @@ const validationConfig = {
   errorClass: "popup__error_visible"
 };
 
-// Creamos una instancia de validador por cada formulario
+// Instanciamos la clase FormValidator para cada formulario
 const editProfileValidator = new FormValidator(validationConfig, profileForm);
 const addCardValidator = new FormValidator(validationConfig, addCardForm);
 
-// Activamos la validación
+// Activamos la validación mediante POO
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
 
-/* --- EVENTOS --- */
+/* -------------------------------------------------------------------------- */
+/* EVENTOS                                    */
+/* -------------------------------------------------------------------------- */
 
-// Abrir Editor Perfil
+// Abrir popup de edición de perfil
 editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(document.querySelector(".popup-perfil"));
 });
 
-// Abrir Añadir Lugar
+// Abrir popup de añadir tarjeta
 addButton.addEventListener("click", () => {
   openPopup(document.querySelector(".popup-places"));
 });
 
-// Submit Perfil
+// Guardar perfil
 profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -80,22 +88,37 @@ profileForm.addEventListener("submit", (evt) => {
   closePopup(document.querySelector(".popup-perfil"));
 });
 
-// Submit Nueva Tarjeta
+// Crear nueva tarjeta
 addCardForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const newCardData = {
     name: document.querySelector("#title-input").value,
     link: document.querySelector("#url-input").value
   };
+  // Prepend para que aparezca al principio
   cardsContainer.prepend(createCardInstance(newCardData));
+  
+  // Limpiamos el formulario
   addCardForm.reset();
+  
+  // Opcional pero recomendado: Desactivar el botón tras crear
+  const submitButton = addCardForm.querySelector(validationConfig.submitButtonSelector);
+  submitButton.classList.add(validationConfig.inactiveButtonClass);
+  submitButton.disabled = true;
+
   closePopup(document.querySelector(".popup-places"));
 });
 
-// Cierre universal por Overlay o botón X
+// Cierre universal de popups (Click fuera o en la X)
 document.querySelectorAll(".popup").forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup-open") || evt.target.closest(".popup__close-button") || evt.target.closest(".popup-place__close-button") || evt.target.closest(".popup__close-button2")) {
+    if (
+      evt.target.classList.contains("popup-open") || 
+      evt.target.classList.contains("popup__overlay") ||
+      evt.target.closest(".popup__close-button") || 
+      evt.target.closest(".popup-place__close-button") || 
+      evt.target.closest(".popup__close-button2")
+    ) {
       closePopup(popup);
     }
   });
