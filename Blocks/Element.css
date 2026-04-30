@@ -59,18 +59,18 @@
   width: 100%;
   height: 19px;
   border: none;
-  background-image: url("../Pictures/Heart_White.png");
+  background-image: url("../images/Heart_White.png");
   background-color: transparent;
 }
 .element__card-like-active {
-  background-image: url("../Pictures/Heart_Black.svg");
+  background-image: url("../images/Heart_Black.svg");
 }
 
 .element__trash {
   position: relative;
 }
 .element__trash-icon {
-  background-image: url("../Pictures/Trash_white.svg");
+  background-image: url("../images/Trash_white.svg");
   position: absolute;
   max-width: 18px;
   width: 100%;
@@ -83,7 +83,7 @@
   background-color: transparent;
 }
 .element__trash-icon:hover {
-  background-image: url("../Pictures/Trash_grey.svg");
+  background-image: url("../images/Trash_grey.svg");
   cursor: pointer;
 }
 
