@@ -1,0 +1,123 @@
+.elements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-bottom: 67px;
+  padding: 0 200px;
+  max-width: 880px;
+  /* Al width se resta 200px de cada lado del padding (200px X2) */
+  width: calc(100% - 400px);
+  row-gap: 21px;
+  column-gap: 17px;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 282px;
+}
+
+.element__grid-card {
+  max-width: 282px;
+  width: 100%;
+  height: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-sizing: border-box;
+}
+.content__card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  max-width: 282px;
+  /* add */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 0;
+}
+
+.element__card-text {
+  color: black;
+  font-family: "Inter";
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  letter-spacing: 0%;
+  margin: 25px 15px 31px 21px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.element__card-like {
+  max-width: 21px;
+  width: 100%;
+  height: 19px;
+  border: none;
+  background-image: url("../Pictures/Heart_White.png");
+  background-color: transparent;
+}
+.element__card-like-active {
+  background-image: url("../Pictures/Heart_Black.svg");
+}
+
+.element__trash {
+  position: relative;
+}
+.element__trash-icon {
+  background-image: url("../Pictures/Trash_white.svg");
+  position: absolute;
+  max-width: 18px;
+  width: 100%;
+  top: 18px;
+  right: 15px;
+  opacity: 1;
+  z-index: 0;
+  height: 18px;
+  border: none;
+  background-color: transparent;
+}
+.element__trash-icon:hover {
+  background-image: url("../Pictures/Trash_grey.svg");
+  cursor: pointer;
+}
+
+
+/* STYLES MEDEIAS QUERIS for 768px*/
+@media screen and (max-width: 768px) {
+  .elements {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    max-width: 768px;
+    /* al Width se resta 19px de cada lado del padding (19px X2) */
+    width: calc(100% - 38px);
+    /* padding: 0 102px; */
+    place-items: center;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .element {
+    width: 282px;
+  }
+}
+
+
+/* STYLES MEDEIAS QUERIS for 320px*/
+@media screen and (max-width: 320px) {
+  .elements {
+    display: grid;
+    grid-template-columns: 282px;
+    grid-template-rows: auto;
+    max-width: 282px;
+    /* al Width se resta 19px de cada lado del padding (19px X2) */
+    width: calc(100% - 38px);
+    padding: 0 19px;
+    margin-bottom: 50px;
+  }
+}
